@@ -8,9 +8,7 @@ import { ISme } from '.'
 
 const base = new Airtable({apiKey: 'keyjJLAqGtpqOUwLN'}).base('app3i1GM4OWL0VVZq');
 
-
 export async function getServerSideProps(context: any) {
-  
   const getSme = () => {
     return new Promise((resolve, reject) => {
         base('Table 1').find(context.query.id, function(err, record) {

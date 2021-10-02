@@ -12,7 +12,6 @@ const getSmes = () => {
 
   return new Promise((resolve, reject) => {
     base('Table 1').select({
-        maxRecords: 3,
         view: "Grid view"
     }).eachPage(function page(records, fetchNextPage) {
         records.forEach(function(record) {
