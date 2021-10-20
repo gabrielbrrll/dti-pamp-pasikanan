@@ -1,34 +1,30 @@
-/* eslint-disable @next/next/no-img-element */
-import type { GetServerSideProps, GetStaticPaths, GetStaticProps, NextPage, NextPageContext } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import styles from '../../styles/Home.module.css'
-import Airtable from 'airtable'
-import { ISme } from '.'
+import Image from 'next/image'
+import { getSme } from 'utils/airtable'
+import styles from 'styles/Home.module.css'
+import { ISme } from './types'
+import { GetServerSideProps } from 'next'
 
-const base = new Airtable({apiKey: 'keyjJLAqGtpqOUwLN'}).base('app3i1GM4OWL0VVZq');
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const sme = JSON.parse(
+    JSON.stringify(await getSme(context.query.id as string))
+  )
 
-export async function getServerSideProps(context: any) {
-  const getSme = () => {
-    return new Promise((resolve, reject) => {
-        base('Table 1').find(context.query.id, function(err, record) {
-          if (err) { reject(err) }
-          return resolve(record)
-      });
-    });
-  }
   return {
-      props: {
-          sme: JSON.stringify(await getSme())|| null
-      },
+    props: {
+      sme,
+    },
   }
 }
 
-const Home = ({ sme }: {
-  sme: any,
-}) => {
-  const parsedSme = JSON.parse(sme)
-  const { fields } = parsedSme
+interface IDirectoryContent {
+  sme: ISme
+}
+
+const DirectoryContent = ({ sme }: IDirectoryContent) => {
+  const { fields } = sme
+
   return (
     <div className={styles.container}>
       <Head>
@@ -38,18 +34,20 @@ const Home = ({ sme }: {
       </Head>
 
       <main className={styles.main}>
-        <img height="150" src={fields.Logo[0].url} alt={fields.name} />
+        <Image height="150" src={fields.logo[0].url} alt={fields.name} />
         <h3 style={{ marginBottom: '0.5em' }} className={styles.title}>
-          {fields.Name}
+          {fields.name}
         </h3>
-        <div style={{ marginBottom: '1em' }}>{fields.Introduction}</div>
-        <div style={{ marginBottom: '1em' }}>{fields.Description}</div>
-        <div style={{ marginBottom: '1em' }}>{fields.Location}</div>
-        <div style={{ marginBottom: '1em' }}>{fields.Email}</div>
-        <div style={{ marginBottom: '1em' }}>{fields['Contact No.']}</div>
+        <div style={{ marginBottom: '1em' }}>{fields.introduction}</div>
+        <div style={{ marginBottom: '1em' }}>{fields.description}</div>
+        <div style={{ marginBottom: '1em' }}>{fields.location}</div>
+        <div style={{ marginBottom: '1em' }}>{fields.email}</div>
+        <div style={{ marginBottom: '1em' }}>{fields.contactNumber}</div>
         <Link href="/directory">
           <a>
-            <span style={{textDecoration: 'underline'}}>Go back to directory list</span>
+            <span style={{ textDecoration: 'underline' }}>
+              Go back to directory list
+            </span>
           </a>
         </Link>
       </main>
@@ -61,4 +59,4 @@ const Home = ({ sme }: {
   )
 }
 
-export default Home
+export default DirectoryContent
