@@ -1,7 +1,7 @@
 import Airtable, { FieldSet, Record } from 'airtable'
 
-const base = new Airtable({ apiKey: process.env.DEV_AIRTABLE_API_KEY }).base(
-  process.env.DEV_AIRTABLE_BASE_KEY_DIRECTORY as string
+const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
+  process.env.AIRTABLE_BASE_KEY_DIRECTORY as string
 )
 
 const getSme = (rowId: string) => {

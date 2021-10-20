@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getSme } from 'utils/airtable'
 import styles from 'styles/Home.module.css'
-import { ISme } from './types'
+import { ISme } from 'types'
 import { GetServerSideProps } from 'next'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -34,7 +34,18 @@ const DirectoryContent = ({ sme }: IDirectoryContent) => {
       </Head>
 
       <main className={styles.main}>
-        <Image height="150" src={fields.logo[0].url} alt={fields.name} />
+        {fields.logo?.length > 0 && (
+          <div
+            style={{ height: '150px', width: '150px', position: 'relative' }}
+          >
+            <Image
+              objectFit="contain"
+              layout="fill"
+              src={fields.logo[0].url}
+              alt={fields.name}
+            />
+          </div>
+        )}
         <h3 style={{ marginBottom: '0.5em' }} className={styles.title}>
           {fields.name}
         </h3>

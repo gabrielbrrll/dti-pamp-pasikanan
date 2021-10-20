@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from 'styles/Home.module.css'
-import { ISme } from './types'
+import { ISme } from 'types'
 import { getSmes } from 'utils/airtable'
 
 export async function getStaticProps() {
