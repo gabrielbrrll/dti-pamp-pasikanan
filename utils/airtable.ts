@@ -19,6 +19,10 @@ const getSmes = () => {
   const smes = [] as Record<FieldSet>[]
 
   return new Promise((resolve, reject) => {
+    const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
+      process.env.AIRTABLE_BASE_KEY_DIRECTORY as string
+    )
+
     base('Directory')
       .select({
         view: 'Grid view',
