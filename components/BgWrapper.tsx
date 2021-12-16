@@ -2,7 +2,7 @@ import { styled } from 'stitches.config'
 
 const StyledDiv = styled('div', {
   background:
-    "linear-gradient(rgba(94, 94, 94, 0.5), rgba(94, 94, 94, 0.5)), url('/images/placeholder.jpeg')",
+    "linear-gradient(rgba(94, 94, 94, 0.5), rgba(94, 94, 94, 0.5)), url('/images/placeholder2.jpeg')",
   height: '100vh',
   width: '100%',
   backgroundSize: 'cover',

@@ -16,11 +16,18 @@ const Banner = () => (
         direction={{ '@sm': 'column', '@md': 'row' }}
       >
         <Section width={{ '@sm': 'full', '@md': '3-4' }}>
-          <Text as="h1" size="6xl" color="white">
+          {/* <Text as="h1" size="6xl" color="white">
             Pasikatan
-          </Text>
+          </Text> */}
+          <div style={{ marginBottom: '-160px' }}>
+            <img
+              width="380"
+              alt="pasikatan-logo"
+              src="/images/pasikatan-logo-white.png"
+            />
+          </div>
           <Section
-            style={{ marginTop: '96px' }}
+            style={{ marginTop: '24px' }}
             width={{ '@sm': 'full', '@md': '1-2' }}
             padding="p-48"
             background="cornsilk"

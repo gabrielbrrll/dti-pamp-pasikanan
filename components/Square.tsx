@@ -6,7 +6,7 @@ const Square = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: '10px',
-  border: '5px solid #FFFFFF',
+  border: '2px solid #FFFFFF',
   color: 'white',
   fontWeight: 600,
   fontSize: '32px',
