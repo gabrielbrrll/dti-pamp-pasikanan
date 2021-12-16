@@ -9,8 +9,10 @@ const StyledDiv = styled('div', {
   position: 'relative',
 })
 
-const BgWrapper = ({ children }: { children: React.ReactNode }) => {
-  return <StyledDiv>{children}</StyledDiv>
+export type WrapperProps = React.HTMLAttributes<HTMLDivElement>
+
+const BgWrapper = ({ children, ...rest }: WrapperProps) => {
+  return <StyledDiv {...rest}>{children}</StyledDiv>
 }
 
 export default BgWrapper

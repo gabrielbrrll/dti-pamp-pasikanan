@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { ISme } from '@types'
 import { getSmes } from 'utils/airtable'
+import { Container, Text } from 'components'
 
 export const getStaticProps: GetStaticProps = async () => {
   const smes = JSON.parse(JSON.stringify(await getSmes()))
@@ -13,6 +14,36 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   }
 }
+
+const ALPHABETS = [
+  '#',
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'P',
+  'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z',
+]
 
 interface IDirectory {
   smes: ISme[]
@@ -27,25 +58,162 @@ const Directory = ({ smes }: IDirectory) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <Link href="/">
-          <a>
-            <span style={{ textDecoration: 'underline' }}>
-              Back to homepage
-            </span>
-          </a>
-        </Link>
-        <h3>SME Names here</h3>
-        {smes.map((sme) => (
-          <Link key={sme.id} href={`/directory/${sme.id}`}>
+      <Container>
+        <div>
+          <Link href="/">
             <a>
               <span style={{ textDecoration: 'underline' }}>
-                {sme.fields.name}
+                Back to homepage
               </span>
             </a>
           </Link>
-        ))}
-      </main>
+        </div>
+        <div
+          style={{
+            marginTop: '36px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div>
+            <Text size="2xl" style={{ fontWeight: 600 }}>
+              SMEs Directory
+            </Text>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                background: '#FFF3DB',
+                borderRadius: '10px',
+                padding: '8px 16px',
+                marginRight: '24px',
+                minWidth: '300px',
+              }}
+            >
+              <input
+                style={{
+                  fontSize: '16px',
+                  marginRight: '12px',
+                  outline: 0,
+                  background: 'transparent',
+                  border: 'transparent',
+                }}
+                placeholder="Aling Lucing's"
+              />
+              <img src="/icons/search.svg" alt="search" />
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                background: '#FFF3DB',
+                borderRadius: '10px',
+                padding: '8px 16px',
+              }}
+            >
+              <select
+                placeholder="Sector"
+                style={{
+                  borderRadius: '10px',
+                  background: 'transparent',
+                  outline: 0,
+                  fontSize: '16px',
+                  border: 'transparent',
+                }}
+              >
+                <option value="sector">Sectors</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div
+          style={{
+            marginTop: '56px',
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+        >
+          {ALPHABETS.map((letter) => (
+            <Text
+              size="2xl"
+              style={{ color: '#CE8800', fontWeight: 600 }}
+              key={letter}
+            >
+              {letter}
+            </Text>
+          ))}
+        </div>
+        <div style={{ marginTop: '48px' }}>
+          <Text size="5xl" style={{ color: '#CE8800', fontWeight: 600 }}>
+            A (3)
+          </Text>
+        </div>
+        <div style={{ marginTop: '48px' }}>
+          {smes.map((sme) => (
+            <Link key={sme.id} href={`/directory/${sme.id}`}>
+              <a>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    marginBottom: '36px',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div
+                      style={{
+                        marginRight: '36px',
+                        backgroundImage: "url('/images/placeholder.jpeg')",
+                        height: '150px',
+                        width: '150px',
+                        backgroundSize: 'cover',
+                        borderRadius: '10px',
+                      }}
+                    />
+                    <div>
+                      <div style={{ marginBottom: '8px' }}>
+                        <Text size="2xl" style={{ fontWeight: 600 }}>
+                          {sme.fields.name}
+                        </Text>
+                      </div>
+                      <div style={{ marginBottom: '8px' }}>
+                        <Text size="xl" style={{ color: '#7E7E7E' }}>
+                          {sme.fields.description}
+                        </Text>
+                      </div>
+                      <div
+                        style={{
+                          background: '#FFF3DB',
+                          padding: '4px 8px',
+                          display: 'inline-block',
+                          borderRadius: '10px',
+                        }}
+                      >
+                        <span style={{ fontSize: '14px' }}>Food</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ marginTop: '4px' }}>
+                      <Text>{sme.fields.location}</Text>
+                    </div>
+                    <div>
+                      <Text style={{ color: '#7E7E7E' }}>
+                        {sme.fields.contactNumber}
+                      </Text>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </Link>
+          ))}
+        </div>
+      </Container>
     </div>
   )
 }

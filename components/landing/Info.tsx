@@ -36,7 +36,7 @@ const Info = () => (
               <Text size="xl" style={{ marginRight: '8px' }}>
                 Learn more
               </Text>
-              <img src="icons/arrow-right.svg" alt="arrow-right" />
+              <img src="icons/arrow-right-black.svg" alt="arrow-right" />
             </Flex>
           </Flex>
         </Section>

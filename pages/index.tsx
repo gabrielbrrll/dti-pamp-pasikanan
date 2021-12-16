@@ -1,7 +1,7 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { Banner, Info } from 'components/landing'
+import { Banner, Categories, FeaturedStories, Info } from 'components/landing'
 
 const Home: NextPage = () => {
   return (
@@ -13,6 +13,8 @@ const Home: NextPage = () => {
       </Head>
       <Banner />
       <Info />
+      <Categories />
+      <FeaturedStories />
     </>
   )
 }

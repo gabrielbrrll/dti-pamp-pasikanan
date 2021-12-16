@@ -1,4 +1,5 @@
 import { styled } from 'stitches.config'
+import { WrapperProps } from './BgWrapper'
 
 const StyledDiv = styled('div', {
   padding: '24px 36px',
@@ -8,8 +9,8 @@ const StyledDiv = styled('div', {
   },
 })
 
-const Container = ({ children }: { children: React.ReactNode }) => {
-  return <StyledDiv>{children}</StyledDiv>
+const Container = ({ children, ...rest }: WrapperProps) => {
+  return <StyledDiv {...rest}>{children}</StyledDiv>
 }
 
 export default Container
