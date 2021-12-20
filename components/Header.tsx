@@ -1,4 +1,5 @@
 import { BgWrapper, Text } from 'components'
+import Link from 'next/link'
 
 const Header = () => (
   <BgWrapper
@@ -11,23 +12,46 @@ const Header = () => (
       color: 'white',
     }}
   >
-    <h1>Pasikatan</h1>
+    <Link href="/">
+      <a>
+        <div>
+          <img
+            width="380"
+            alt="pasikatan-logo"
+            src="/images/pasikatan-logo-white.png"
+            style={{ zIndex: 1 }}
+          />
+        </div>
+      </a>
+    </Link>
     <div style={{ display: 'flex', alignItems: 'center' }}>
-      <Text
-        size="2xl"
-        style={{ fontWeight: 600, marginRight: '48px', color: 'white' }}
-      >
-        SMEs
-      </Text>
-      <Text
-        size="2xl"
-        style={{ fontWeight: 600, marginRight: '48px', color: 'white' }}
-      >
-        Stories
-      </Text>
-      <Text size="2xl" style={{ fontWeight: 600, color: 'white' }}>
-        About
-      </Text>
+      <Link href="/directory">
+        <a>
+          <Text
+            size="2xl"
+            style={{ fontWeight: 600, marginRight: '48px', color: 'white' }}
+          >
+            SMEs
+          </Text>
+        </a>
+      </Link>
+      <Link href="/stories">
+        <a>
+          <Text
+            size="2xl"
+            style={{ fontWeight: 600, marginRight: '48px', color: 'white' }}
+          >
+            Stories
+          </Text>
+        </a>
+      </Link>
+      <Link href="/about">
+        <a>
+          <Text size="2xl" style={{ fontWeight: 600, color: 'white' }}>
+            About
+          </Text>
+        </a>
+      </Link>
     </div>
   </BgWrapper>
 )

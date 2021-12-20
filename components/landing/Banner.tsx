@@ -39,10 +39,7 @@ const Banner = () => {
           direction={{ '@sm': 'column', '@md': 'row' }}
         >
           <Section width={{ '@sm': 'full', '@md': '3-4' }}>
-            {/* <Text as="h1" size="6xl" color="white">
-              Pasikatan
-            </Text> */}
-            <div style={{ marginBottom: '-160px' }}>
+            <div style={{ marginTop: '140px' }}>
               <img
                 width="380"
                 alt="pasikatan-logo"
@@ -93,7 +90,7 @@ const Banner = () => {
                 <Square style={{ marginBottom: '32px' }}>Stories</Square>
               </a>
             </Link>
-            <Link href="/directory">
+            <Link href="/about">
               <a>
                 <Square>About</Square>
               </a>

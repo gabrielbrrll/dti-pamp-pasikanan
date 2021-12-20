@@ -36,12 +36,10 @@ const DirectoryContent = ({ sme }: IDirectoryContent) => {
       </Head>
 
       <Container style={{ margin: '40px 120px' }}>
-        <div style={{ marginBottom: '36px' }}>
+        <div style={{ marginBottom: '48px', zIndex: 100 }}>
           <Link href="/directory">
             <a>
-              <span style={{ textDecoration: 'underline' }}>
-                Go back to directory list
-              </span>
+              <Text>Go back to directory list</Text>
             </a>
           </Link>
         </div>
@@ -51,7 +49,7 @@ const DirectoryContent = ({ sme }: IDirectoryContent) => {
             alignItems: 'center',
           }}
         >
-          <div>
+          <div style={{ zIndex: 1 }}>
             {fields.logo?.length > 0 && (
               <img
                 style={{ width: '570px', borderRadius: '10px' }}

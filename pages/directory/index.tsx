@@ -210,6 +210,7 @@ const Directory = ({ smes }: IDirectory) => {
                   searchSmes(e.target.value)
                 }}
               >
+                <option value="all">all</option>
                 {categories.map((categ) => (
                   <option key={categ as unknown as string} value={categ}>
                     {categ}
