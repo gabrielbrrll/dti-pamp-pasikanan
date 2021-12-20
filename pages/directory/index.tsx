@@ -1,9 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { ISme } from '@types'
 import { getSmes } from 'utils/airtable'
 import { Container, Text } from 'components'
+import Router, { useRouter } from 'next/router'
+import { useState } from 'react'
 
 export const getStaticProps: GetStaticProps = async () => {
   const smes = JSON.parse(JSON.stringify(await getSmes()))
@@ -50,6 +53,77 @@ interface IDirectory {
 }
 
 const Directory = ({ smes }: IDirectory) => {
+  const router = useRouter()
+  const { query } = router
+
+  const [searchQuery, setSearchQuery] = useState('')
+  const [activeCategory, setActiveCategory] = useState('all')
+  const categories = smes.map((sme) => sme.fields.category)
+
+  const filterSmes = (smes: ISme[]) => {
+    if (
+      query &&
+      Object.keys(query).length === 0 &&
+      Object.getPrototypeOf(query) === Object.prototype
+    ) {
+      return smes
+    } else {
+      let filteredSmes = smes
+
+      if (query.search) {
+        filteredSmes = filteredSmes.filter((sme) =>
+          JSON.stringify(sme)
+            .toLowerCase()
+            .includes(query?.search as string)
+        )
+      }
+
+      if (query.category !== 'all') {
+        filteredSmes = filteredSmes.filter((sme) =>
+          sme.fields.category.includes((query.category as string) || '')
+        )
+      }
+
+      if (query.startsWith) {
+        filteredSmes = smes.filter(
+          (sme) => sme.fields.name[0].toLowerCase() === query.startsWith
+        )
+      }
+
+      return filteredSmes
+    }
+  }
+
+  const searchSmes = (category = 'all') => {
+    setActiveCategory(category)
+    Router.push({
+      pathname: '/directory',
+      query: {
+        category,
+        search: searchQuery,
+      },
+    })
+    filterSmes(smes)
+  }
+
+  const searchStartQuery = (letter: string) => {
+    setSearchQuery('')
+    Router.push({
+      pathname: '/directory',
+      query: {
+        startsWith: letter.toLowerCase(),
+      },
+    })
+    filterSmes(smes)
+  }
+
+  const resetFilters = () => {
+    router.replace('/directory', undefined, { shallow: true })
+    filterSmes(smes)
+  }
+
+  const filteredSmes = filterSmes(smes)
+
   return (
     <div>
       <Head>
@@ -95,6 +169,7 @@ const Directory = ({ smes }: IDirectory) => {
               }}
             >
               <input
+                onChange={(e) => setSearchQuery(e.target.value)}
                 style={{
                   fontSize: '16px',
                   marginRight: '12px',
@@ -102,9 +177,15 @@ const Directory = ({ smes }: IDirectory) => {
                   background: 'transparent',
                   border: 'transparent',
                 }}
-                placeholder="Aling Lucing's"
+                placeholder="Search SME here"
+                value={searchQuery}
               />
-              <img src="/icons/search.svg" alt="search" />
+              <img
+                src="/icons/search.svg"
+                alt="search"
+                style={{ cursor: 'pointer' }}
+                onClick={() => searchSmes(activeCategory)}
+              />
             </div>
             <div
               style={{
@@ -116,7 +197,7 @@ const Directory = ({ smes }: IDirectory) => {
               }}
             >
               <select
-                placeholder="Sector"
+                placeholder="All"
                 style={{
                   borderRadius: '10px',
                   background: 'transparent',
@@ -124,8 +205,16 @@ const Directory = ({ smes }: IDirectory) => {
                   fontSize: '16px',
                   border: 'transparent',
                 }}
+                value={activeCategory}
+                onChange={(e) => {
+                  searchSmes(e.target.value)
+                }}
               >
-                <option value="sector">Sectors</option>
+                {categories.map((categ) => (
+                  <option key={categ as unknown as string} value={categ}>
+                    {categ}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -140,8 +229,9 @@ const Directory = ({ smes }: IDirectory) => {
           {ALPHABETS.map((letter) => (
             <Text
               size="2xl"
-              style={{ color: '#CE8800', fontWeight: 600 }}
+              style={{ color: '#CE8800', fontWeight: 600, cursor: 'pointer' }}
               key={letter}
+              onClick={() => searchStartQuery(letter)}
             >
               {letter}
             </Text>
@@ -149,69 +239,86 @@ const Directory = ({ smes }: IDirectory) => {
         </div>
         <div style={{ marginTop: '48px' }}>
           <Text size="5xl" style={{ color: '#CE8800', fontWeight: 600 }}>
-            A (3)
+            {(query?.startsWith as string)?.toUpperCase() || 'All'} (
+            {filteredSmes.length})
           </Text>
+          <div
+            style={{ marginTop: '12px', color: '#7E7E7E', cursor: 'pointer' }}
+            onClick={resetFilters}
+          >
+            Remove filters
+          </div>
         </div>
         <div style={{ marginTop: '48px' }}>
-          {smes.map((sme) => (
-            <Link key={sme.id} href={`/directory/${sme.id}`}>
-              <a>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginBottom: '36px',
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
+          {filteredSmes.map((sme) => {
+            return (
+              <Link key={sme.id} href={`/directory/${sme.id}`}>
+                <a>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      marginBottom: '36px',
+                    }}
+                  >
                     <div
                       style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '60%',
                         marginRight: '36px',
-                        backgroundImage: "url('/images/placeholder.jpeg')",
-                        height: '150px',
-                        width: '150px',
-                        backgroundSize: 'cover',
-                        borderRadius: '10px',
                       }}
-                    />
-                    <div>
-                      <div style={{ marginBottom: '8px' }}>
-                        <Text size="2xl" style={{ fontWeight: 600 }}>
-                          {sme.fields.name}
-                        </Text>
-                      </div>
-                      <div style={{ marginBottom: '8px' }}>
-                        <Text size="xl" style={{ color: '#7E7E7E' }}>
-                          {sme.fields.description}
-                        </Text>
-                      </div>
+                    >
                       <div
                         style={{
-                          background: '#FFF3DB',
-                          padding: '4px 8px',
-                          display: 'inline-block',
+                          marginRight: '48px',
+                          backgroundImage: `url('${sme.fields.logo[0].url}')`,
+                          height: '150px',
+                          width: '25%',
+                          backgroundSize: 'contain',
                           borderRadius: '10px',
+                          backgroundRepeat: 'no-repeat',
                         }}
-                      >
-                        <span style={{ fontSize: '14px' }}>Food</span>
+                      />
+                      <div style={{ width: '75%' }}>
+                        <div style={{ marginBottom: '8px' }}>
+                          <Text size="2xl" style={{ fontWeight: 600 }}>
+                            {sme.fields.name}
+                          </Text>
+                        </div>
+                        <div style={{ marginBottom: '8px' }}>
+                          <Text size="xl" style={{ color: '#7E7E7E' }}>
+                            {sme.fields.description}
+                          </Text>
+                        </div>
+                        <div
+                          style={{
+                            background: '#FFF3DB',
+                            padding: '4px 8px',
+                            display: 'inline-block',
+                            borderRadius: '10px',
+                          }}
+                        >
+                          <span style={{ fontSize: '14px' }}>Food</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ textAlign: 'right', width: '40%' }}>
+                      <div style={{ marginTop: '4px' }}>
+                        <Text>{sme.fields.location}</Text>
+                      </div>
+                      <div>
+                        <Text style={{ color: '#7E7E7E' }}>
+                          {sme.fields.contactNumber}
+                        </Text>
                       </div>
                     </div>
                   </div>
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ marginTop: '4px' }}>
-                      <Text>{sme.fields.location}</Text>
-                    </div>
-                    <div>
-                      <Text style={{ color: '#7E7E7E' }}>
-                        {sme.fields.contactNumber}
-                      </Text>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </Link>
-          ))}
+                </a>
+              </Link>
+            )
+          })}
         </div>
       </Container>
     </div>

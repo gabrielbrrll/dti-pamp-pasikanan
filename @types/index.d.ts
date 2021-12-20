@@ -33,6 +33,7 @@ export type TFields = {
   location: string
   logo: TLogo[]
   name: string
+  category: string[]
 }
 
 export interface ISme {

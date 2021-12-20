@@ -1,12 +1,13 @@
 import React from 'react'
 import { BgWrapper } from 'components'
+import Link from 'next/link'
 
 const CATEGORIES = [
   { label: 'Food', value: 'food' },
-  { label: 'Hospitality', value: 'hospitality' },
-  { label: 'Marketing', value: 'marketing' },
-  { label: 'Arts & Crafts', value: 'arts-and-crafts' },
-  { label: 'Graphics & Design', value: 'graphics-and-design' },
+  { label: 'Delicacies', value: 'delicacies' },
+  { label: 'Metalcraft', value: 'metalcraft' },
+  { label: 'Herbal', value: 'herbal' },
+  { label: 'Soap Manufacturing', value: 'soap manufacturing' },
 ]
 
 const Categories = () => {
@@ -17,20 +18,23 @@ const Categories = () => {
       </h2>
       <div style={{ display: 'flex', marginTop: '40px' }}>
         {CATEGORIES.map((cg) => (
-          <div
-            style={{
-              marginRight: '32px',
-              color: 'white',
-              fontSize: '26px',
-              background: 'rgba(255, 255, 255, 0.2)',
-              border: '2px solid #FFFFFF',
-              borderRadius: '10px',
-              padding: '8px 20px',
-            }}
-            key={cg.value}
-          >
-            {cg.label}
-          </div>
+          <Link href={`/directory?search=&category=${cg.value}`} key={cg.value}>
+            <a target="_blank">
+              <div
+                style={{
+                  marginRight: '32px',
+                  color: 'white',
+                  fontSize: '26px',
+                  background: 'rgba(255, 255, 255, 0.2)',
+                  border: '2px solid #FFFFFF',
+                  borderRadius: '10px',
+                  padding: '8px 20px',
+                }}
+              >
+                {cg.label}
+              </div>
+            </a>
+          </Link>
         ))}
       </div>
       <div
@@ -40,10 +44,14 @@ const Categories = () => {
           marginTop: '24px',
         }}
       >
-        <h2 style={{ color: 'white', fontSize: '32px', fontWeight: 600 }}>
-          Browse all categories{' '}
-        </h2>
-        <img alt="arrow-right" src="/icons/arrow-right.svg" />
+        <Link href="/categories">
+          <a style={{ display: 'flex' }}>
+            <h2 style={{ color: 'white', fontSize: '32px', fontWeight: 600 }}>
+              Browse all categories{' '}
+            </h2>
+            <img alt="arrow-right" src="/icons/arrow-right.svg" />
+          </a>
+        </Link>
       </div>
     </BgWrapper>
   )

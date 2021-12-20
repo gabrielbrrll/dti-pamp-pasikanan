@@ -2,31 +2,28 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { Container, Text } from 'components'
+import { useRouter } from 'next/router'
 
 const SECTORS = [
-  {
-    label: 'Arts & Crafts',
-    value: 'arts',
-  },
-  {
-    label: 'Food',
-    value: 'food',
-  },
-  {
-    label: 'Marketing',
-    value: 'marketing',
-  },
-  {
-    label: 'Apparels',
-    value: 'apparels',
-  },
-  {
-    label: 'Agriculture',
-    value: 'agriculture',
-  },
+  { label: 'Food', value: 'food' },
+  { label: 'Delicacies', value: 'delicacies' },
+  { label: 'Metalcraft', value: 'metalcraft' },
+  { label: 'Herbal', value: 'herbal' },
+  { label: 'Soap Manufacturing', value: 'soap manufacturing' },
 ]
 
 const About: NextPage = () => {
+  const router = useRouter()
+
+  const searchByCategory = (category: string) => {
+    router.push({
+      pathname: '/directory',
+      query: {
+        search: '',
+        category,
+      },
+    })
+  }
   return (
     <>
       <Head>
@@ -47,7 +44,7 @@ const About: NextPage = () => {
             <Text size="4xl" style={{ fontWeight: 600 }}>
               Categories
             </Text>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            {/* <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <div
                 style={{
                   display: 'flex',
@@ -72,13 +69,14 @@ const About: NextPage = () => {
                 />
                 <img src="/icons/search.svg" alt="search" />
               </div>
-            </div>
+            </div> */}
           </div>
           <div style={{ marginTop: '24px', display: 'flex', flexWrap: 'wrap' }}>
             {SECTORS.map((sector) => (
               <div
+                onClick={() => searchByCategory(sector.value)}
                 key={sector.value}
-                style={{ flex: '50%', marginBottom: '20px' }}
+                style={{ flex: '50%', marginBottom: '20px', cursor: 'pointer' }}
               >
                 <Text size="3xl">{sector.label}</Text>
               </div>

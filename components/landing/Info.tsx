@@ -1,4 +1,5 @@
 import { Container, Flex, Section, Text } from 'components'
+import Link from 'next/link'
 
 const Info = () => (
   <div style={{ marginTop: '36px' }}>
@@ -32,12 +33,19 @@ const Info = () => (
               et, ultricies lectus. Sed sit amet cursus diam. Quisque eget
               egestas magna. Morbi imperdiet cursus dolor.{' '}
             </Text>
-            <Flex alignment="vertical-centered" style={{ marginTop: '24px' }}>
-              <Text size="xl" style={{ marginRight: '8px' }}>
-                Learn more
-              </Text>
-              <img src="icons/arrow-right-black.svg" alt="arrow-right" />
-            </Flex>
+            <Link href="/about">
+              <a>
+                <Flex
+                  alignment="vertical-centered"
+                  style={{ marginTop: '24px' }}
+                >
+                  <Text size="xl" style={{ marginRight: '8px' }}>
+                    Learn more
+                  </Text>
+                  <img src="icons/arrow-right-black.svg" alt="arrow-right" />
+                </Flex>
+              </a>
+            </Link>
           </Flex>
         </Section>
       </Flex>

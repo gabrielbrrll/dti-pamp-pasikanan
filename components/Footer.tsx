@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 const Footer = () => (
   <div
     style={{
@@ -9,7 +11,13 @@ const Footer = () => (
     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <div>
-          <h1 style={{ margin: 0 }}>Pasikatan</h1>
+          <div>
+            <img
+              width="380"
+              alt="pasikatan-logo"
+              src="/images/pasikatan-logo-black.png"
+            />
+          </div>
           <span>Pampanga SMEs Directory</span>
         </div>
         <div>
@@ -18,9 +26,23 @@ const Footer = () => (
       </div>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <div style={{ marginRight: '64px' }}>
-          <div style={{ fontSize: '22px' }}>Stories</div>
-          <div style={{ fontSize: '22px', marginTop: '16px' }}>Directory</div>
-          <div style={{ fontSize: '22px', marginTop: '16px' }}>About</div>
+          <Link href="/stories">
+            <a>
+              <div style={{ fontSize: '22px' }}>Stories</div>
+            </a>
+          </Link>
+          <Link href="/directory">
+            <a>
+              <div style={{ fontSize: '22px', marginTop: '16px' }}>
+                Directory
+              </div>
+            </a>
+          </Link>
+          <Link href="/about">
+            <a>
+              <div style={{ fontSize: '22px', marginTop: '16px' }}>About</div>
+            </a>
+          </Link>
         </div>
         <div>
           <div style={{ fontSize: '22px', fontWeight: 600 }}>Contact Us</div>
