@@ -1,14 +1,24 @@
 import React from 'react'
 import { Text } from 'components'
 
-const StoryCard = ({ type = 'card' }: { type: 'card' | 'content' }) => {
+const StoryCard = ({
+  type = 'card',
+  content,
+}: {
+  type: 'card' | 'content'
+  content: {
+    title: string
+    description: string
+    url: string
+  }
+}) => {
   return (
     <div>
       {type === 'card' ? (
         <>
           <div
             style={{
-              backgroundImage: "url('/images/placeholder.jpeg')",
+              backgroundImage: `url('${content.url}')`,
               backgroundSize: 'cover',
               height: '328px',
               width: '387px',
@@ -17,7 +27,7 @@ const StoryCard = ({ type = 'card' }: { type: 'card' | 'content' }) => {
           />
           <div style={{ marginTop: '20px' }}>
             <Text size="xl" style={{ fontWeight: 600 }}>
-              Why Aling Lucings sisig is still the best!
+              {content.title}
             </Text>
             <div style={{ margin: '8px 0' }}>
               <Text
@@ -28,7 +38,7 @@ const StoryCard = ({ type = 'card' }: { type: 'card' | 'content' }) => {
                   opacity: 0.5,
                 }}
               >
-                Why Aling Lucings sisig is still the best! Because it is made...
+                {content.description}
               </Text>
             </div>
             <div
@@ -51,7 +61,7 @@ const StoryCard = ({ type = 'card' }: { type: 'card' | 'content' }) => {
           <div
             style={{
               marginRight: '36px',
-              backgroundImage: "url('/images/placeholder.jpeg')",
+              backgroundImage: `url('${content.url}')`,
               height: '212px',
               width: '276px',
               backgroundSize: 'cover',
@@ -61,13 +71,12 @@ const StoryCard = ({ type = 'card' }: { type: 'card' | 'content' }) => {
           <div>
             <div>
               <Text size="3xl" style={{ fontWeight: 600 }}>
-                Why Aling Lucings sisig is still the best!
+                {content.title}
               </Text>
             </div>
             <div style={{ marginTop: '12px' }}>
               <Text size="sm" style={{ color: '#7E7E7E' }}>
-                Why aling lucing’s sisig is still the best! Because it is made
-                with love and lorem ipsum....
+                {content.description}
               </Text>
             </div>
             <div
