@@ -47,8 +47,18 @@ const Header = () => (
       </Link>
       <Link href="/about">
         <a>
-          <Text size="2xl" style={{ fontWeight: 600, color: 'white' }}>
+          <Text
+            size="2xl"
+            style={{ fontWeight: 600, color: 'white', marginRight: '48px' }}
+          >
             About
+          </Text>
+        </a>
+      </Link>
+      <Link href="/resources">
+        <a>
+          <Text size="2xl" style={{ fontWeight: 600, color: 'white' }}>
+            Resources
           </Text>
         </a>
       </Link>

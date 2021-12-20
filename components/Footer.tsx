@@ -43,6 +43,13 @@ const Footer = () => (
               <div style={{ fontSize: '22px', marginTop: '16px' }}>About</div>
             </a>
           </Link>
+          <Link href="/resources">
+            <a>
+              <div style={{ fontSize: '22px', marginTop: '16px' }}>
+                Resources
+              </div>
+            </a>
+          </Link>
         </div>
         <div>
           <div style={{ fontSize: '22px', fontWeight: 600 }}>Contact Us</div>
