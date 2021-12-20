@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Text } from 'components'
 
 const Footer = () => (
   <div
@@ -18,7 +19,6 @@ const Footer = () => (
               src="/images/pasikatan-logo-black.png"
             />
           </div>
-          <span>Pampanga SMEs Directory</span>
         </div>
         <div>
           <img alt="DTI logo" src="/images/dti-logo.png" />
@@ -61,6 +61,14 @@ const Footer = () => (
           </div>
         </div>
       </div>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <Text size="sm">Powered by</Text>
+      <img
+        style={{ height: '72px' }}
+        src="/images/gulis-logo.png"
+        alt="gulis-digital-marketing-services"
+      />
     </div>
   </div>
 )
