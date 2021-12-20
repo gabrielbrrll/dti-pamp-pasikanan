@@ -20,8 +20,8 @@ const Square = styled('div', {
 
   '@md': {
     fontSize: '46px',
-    height: '218px',
-    width: '218px',
+    height: '25vh',
+    width: '15vw',
   },
 })
 
