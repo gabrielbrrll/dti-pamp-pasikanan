@@ -18,7 +18,11 @@ const Qr = () => {
     <div>
       <h1>Hello</h1>
       <QrReader
-        constraints={{ facingMode }}
+        constraints={{
+          facingMode: {
+            exact: facingMode,
+          },
+        }}
         onResult={(result) => {
           // eslint-disable-next-line no-console
           console.log(result, 'RESULT')
