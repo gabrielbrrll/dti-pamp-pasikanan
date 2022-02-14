@@ -8,12 +8,17 @@ interface QrReaderPropsResult {
 
 const Qr = () => {
   const [data, setData] = useState<string | QrReaderPropsResult>('No result')
+  const [facingMode, setFacingMode] = useState('user')
+
+  const switchCamera = () => {
+    facingMode === 'user' ? setFacingMode('environment') : setFacingMode('user')
+  }
 
   return (
     <div>
       <h1>Hello</h1>
       <QrReader
-        constraints={{ facingMode: 'user' }}
+        constraints={{ facingMode }}
         onResult={(result) => {
           // eslint-disable-next-line no-console
           console.log(result, 'RESULT')
@@ -23,6 +28,10 @@ const Qr = () => {
         }}
       />
       {data.toString()}
+
+      <h1 style={{ cursor: 'pointer' }} onClick={switchCamera}>
+        SWITCH Camera
+      </h1>
     </div>
   )
 }
