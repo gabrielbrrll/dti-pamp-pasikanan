@@ -1,12 +1,10 @@
-import dynamic from 'next/dynamic'
 import { useState } from 'react'
+import { QrReader } from 'react-qr-reader'
 
 interface QrReaderPropsResult {
   text: string
   timestamp?: number
 }
-
-const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false })
 
 const Qr = () => {
   const [, setData] = useState<string | QrReaderPropsResult>('No result')
@@ -22,19 +20,17 @@ const Qr = () => {
     }
   }
 
-  const handleError = () => {
-    // eslint-disable-next-line no-console
-  }
-
   return (
     <div>
       <h1>Hello</h1>
       <QrReader
-        delay={300}
-        onError={handleError}
-        onScan={handleScan}
-        style={{ width: '100%' }}
-        facingMode={facingMode}
+        onResult={handleScan}
+        containerStyle={{ width: '100%' }}
+        videoContainerStyle={{ width: '100%' }}
+        videoStyle={{ width: '100%' }}
+        constraints={{
+          facingMode,
+        }}
       />
 
       <h1 style={{ cursor: 'pointer' }} onClick={switchCamera}>
