@@ -27,8 +27,9 @@ const About: NextPage = () => {
     <>
       <Meta />
       <Container>
-        <div style={{ margin: '4em 16em' }}>
+        <div className="categories-list-container">
           <div
+            className="block-sm"
             style={{
               marginBottom: '48px',
               display: 'flex',
@@ -66,7 +67,10 @@ const About: NextPage = () => {
               </div>
             </div> */}
           </div>
-          <div style={{ marginTop: '24px', display: 'flex', flexWrap: 'wrap' }}>
+          <div
+            className="categories-list-container"
+            style={{ marginTop: '24px', display: 'flex', flexWrap: 'wrap' }}
+          >
             {SECTORS.map((sector) => (
               <div
                 onClick={() => searchByCategory(sector.value)}

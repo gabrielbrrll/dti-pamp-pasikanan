@@ -277,4 +277,8 @@ a {
   .blog-container {
     margin: 0 !important;
   }
+
+  .categories-list-container {
+    margin: 24px !important;
+  }
 }
