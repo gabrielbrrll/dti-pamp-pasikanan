@@ -34,6 +34,8 @@ export type TFields = {
   logo: TLogo[]
   name: string
   category: string[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  gallery: any
 }
 
 export interface ISme {

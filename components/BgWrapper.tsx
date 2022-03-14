@@ -7,6 +7,11 @@ const StyledDiv = styled('div', {
   width: '100%',
   backgroundSize: 'cover',
   position: 'relative',
+
+  '@sm': {
+    height: 'auto',
+    padding: 24,
+  },
 })
 
 export type WrapperProps = React.HTMLAttributes<HTMLDivElement>

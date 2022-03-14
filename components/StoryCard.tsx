@@ -17,6 +17,7 @@ const StoryCard = ({
       {type === 'card' ? (
         <>
           <div
+            className="story-card-image-container"
             style={{
               backgroundImage: `url('${content.url}')`,
               backgroundSize: 'cover',
@@ -29,7 +30,14 @@ const StoryCard = ({
             <Text size="xl" style={{ fontWeight: 600 }}>
               {content.title}
             </Text>
-            <div style={{ margin: '8px 0' }}>
+            <div
+              style={{
+                margin: '8px 0',
+                maxHeight: '40px',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+            >
               <Text
                 size="sm"
                 style={{
@@ -56,25 +64,35 @@ const StoryCard = ({
         </>
       ) : (
         <div
+          className="story-card-sm"
           style={{ display: 'flex', marginTop: '64px', alignItems: 'center' }}
         >
           <div
+            className="story-content-image-container"
             style={{
               marginRight: '36px',
               backgroundImage: `url('${content.url}')`,
               height: '212px',
-              width: '276px',
+              flex: 0.25,
               backgroundSize: 'cover',
               borderRadius: '10px',
             }}
           />
-          <div>
+          <div style={{ flex: 1 }}>
             <div>
               <Text size="3xl" style={{ fontWeight: 600 }}>
                 {content.title}
               </Text>
             </div>
-            <div style={{ marginTop: '12px' }}>
+            <div
+              style={{
+                marginTop: '12px',
+                height: '56px',
+                whiteSpace: 'pre-wrap',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+              }}
+            >
               <Text size="sm" style={{ color: '#7E7E7E' }}>
                 {content.description}
               </Text>

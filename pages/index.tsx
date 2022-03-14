@@ -1,16 +1,29 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import { Banner, Categories, FeaturedStories, Info } from 'components/landing'
 import { Meta } from 'components'
 
-const Home: NextPage = () => {
+import { getStories } from 'utils/airtable'
+
+export const getStaticProps: GetStaticProps = async () => {
+  const stories = JSON.parse(JSON.stringify(await getStories()))
+
+  return {
+    props: {
+      stories,
+    },
+  }
+}
+
+const Home: NextPage = ({ stories }: any) => {
   return (
     <>
       <Meta />
       <Banner />
       <Info />
       <Categories />
-      <FeaturedStories />
+      <FeaturedStories stories={stories} />
     </>
   )
 }

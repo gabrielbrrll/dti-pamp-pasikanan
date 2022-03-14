@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Container,
   BgWrapper,
@@ -10,6 +11,7 @@ import {
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { Search } from 'react-feather'
 
 const Banner = () => {
   const router = useRouter()
@@ -23,6 +25,12 @@ const Banner = () => {
         category: 'all',
       },
     })
+  }
+
+  const _handleKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      searchSmes()
+    }
   }
 
   const browseByCategory = () => {
@@ -39,17 +47,18 @@ const Banner = () => {
           direction={{ '@sm': 'column', '@md': 'row' }}
         >
           <Section width={{ '@sm': 'full', '@md': '3-4' }}>
-            <div style={{ marginTop: '140px' }}>
+            <div className="logo-container" style={{ marginTop: '140px' }}>
               <img
                 width="380"
                 alt="pasikatan-logo"
                 src="/images/pasikatan-logo-white.png"
+                className="pasikatan-logo"
               />
             </div>
             <Section
               style={{ marginTop: '24px' }}
               width={{ '@sm': 'full', '@md': '1-2' }}
-              padding="p-48"
+              padding={{ '@sm': 'p-24', '@md': 'p-48' }}
               background="cornsilk"
               opacity="opacity-90"
             >
@@ -58,14 +67,15 @@ const Banner = () => {
                 <Input
                   placeholder="Aling Lucing's"
                   value={searchQuery}
+                  onKeyDown={_handleKeyDown}
+                  tabIndex={0}
                   style={{ marginRight: '12px' }}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <img
-                  src="/icons/search.svg"
-                  alt="search"
-                  style={{ cursor: 'pointer' }}
+                <Search
+                  style={{ cursor: 'pointer', marginTop: '6px' }}
                   onClick={searchSmes}
+                  className="text-hover"
                 />
               </Flex>
               <Section
@@ -73,7 +83,11 @@ const Banner = () => {
                 textAlign="right"
                 style={{ marginTop: '22px' }}
               >
-                <Text onClick={browseByCategory} style={{ cursor: 'pointer' }}>
+                <Text
+                  className="text-hover"
+                  onClick={browseByCategory}
+                  style={{ cursor: 'pointer' }}
+                >
                   Browse by category
                 </Text>
               </Section>
@@ -82,17 +96,27 @@ const Banner = () => {
           <Section margin={{ '@sm': 'mt-48', '@md': 'm-0' }}>
             <Link href="/directory">
               <a>
-                <Square style={{ marginBottom: '32px' }}>SMEs</Square>
+                <Square
+                  className="square-menu"
+                  style={{ marginBottom: '32px' }}
+                >
+                  SMEs
+                </Square>
               </a>
             </Link>
             <Link href="/stories">
               <a>
-                <Square style={{ marginBottom: '32px' }}>Stories</Square>
+                <Square
+                  className="square-menu"
+                  style={{ marginBottom: '32px' }}
+                >
+                  Stories
+                </Square>
               </a>
             </Link>
             <Link href="/about">
               <a>
-                <Square>About</Square>
+                <Square style={{ marginBottom: '60px' }}>About</Square>
               </a>
             </Link>
           </Section>

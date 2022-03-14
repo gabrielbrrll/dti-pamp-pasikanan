@@ -18,6 +18,11 @@ const Square = styled('div', {
     color: '$cornsilk',
   },
 
+  '@sm': {
+    fontSize: '24px',
+    height: '48px',
+  },
+
   '@md': {
     fontSize: '46px',
     height: '25vh',

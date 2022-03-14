@@ -19,31 +19,262 @@ a {
   font-family: 'Avenir Next';
   font-weight: 400;
   src: url('/fonts/AvenirNext-Regular.eot'); /* IE9 Compat Modes */
-  src: url('/fonts/AvenirNext-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('/fonts/AvenirNext-Regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('/fonts/AvenirNext-Regular.woff') format('woff'), /* Pretty Modern Browsers */
-       url('/fonts/AvenirNext-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('/fonts/AvenirNext-Regular.svg#AvenirNext') format('svg'); /* Legacy iOS */
+  src: url('/fonts/AvenirNext-Regular.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('/fonts/AvenirNext-Regular.woff2') format('woff2'),
+    /* Super Modern Browsers */ url('/fonts/AvenirNext-Regular.woff')
+      format('woff'),
+    /* Pretty Modern Browsers */ url('/fonts/AvenirNext-Regular.ttf')
+      format('truetype'),
+    /* Safari, Android, iOS */ url('/fonts/AvenirNext-Regular.svg#AvenirNext')
+      format('svg'); /* Legacy iOS */
 }
 
 @font-face {
   font-family: 'Avenir Next';
   font-weight: 600;
   src: url('/fonts/AvenirNext-Demi.eot'); /* IE9 Compat Modes */
-  src: url('/fonts/AvenirNext-Demi.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('/fonts/AvenirNext-Demi.woff2') format('woff2'), /* Super Modern Browsers */
-       url('/fonts/AvenirNext-Demi.woff') format('woff'), /* Pretty Modern Browsers */
-       url('/fonts/AvenirNext-Demi.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('/fonts/AvenirNext-Demi.svg#AvenirNext') format('svg'); /* Legacy iOS */
+  src: url('/fonts/AvenirNext-Demi.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('/fonts/AvenirNext-Demi.woff2') format('woff2'),
+    /* Super Modern Browsers */ url('/fonts/AvenirNext-Demi.woff')
+      format('woff'),
+    /* Pretty Modern Browsers */ url('/fonts/AvenirNext-Demi.ttf')
+      format('truetype'),
+    /* Safari, Android, iOS */ url('/fonts/AvenirNext-Demi.svg#AvenirNext')
+      format('svg'); /* Legacy iOS */
 }
 
 @font-face {
   font-family: 'Avenir Next';
   font-weight: 800;
   src: url('/fonts/AvenirNext-Heavy.eot'); /* IE9 Compat Modes */
-  src: url('/fonts/AvenirNext-Heavy.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('/fonts/AvenirNext-Heavy.woff2') format('woff2'), /* Super Modern Browsers */
-       url('/fonts/AvenirNext-Heavy.woff') format('woff'), /* Pretty Modern Browsers */
-       url('/fonts/AvenirNext-Heavy.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('/fonts/AvenirNext-Heavy.svg#AvenirNext') format('svg'); /* Legacy iOS */
+  src: url('/fonts/AvenirNext-Heavy.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('/fonts/AvenirNext-Heavy.woff2') format('woff2'),
+    /* Super Modern Browsers */ url('/fonts/AvenirNext-Heavy.woff')
+      format('woff'),
+    /* Pretty Modern Browsers */ url('/fonts/AvenirNext-Heavy.ttf')
+      format('truetype'),
+    /* Safari, Android, iOS */ url('/fonts/AvenirNext-Heavy.svg#AvenirNext')
+      format('svg'); /* Legacy iOS */
+}
+
+.hover-opaque:hover {
+  opacity: 0.8;
+}
+
+.background-hover:hover {
+  background: #e4cf89 !important;
+}
+
+.underline-hover:hover {
+  text-decoration: underline !important;
+}
+
+.text-hover:hover {
+  color: #e4cf89 !important;
+}
+
+.mini-menu {
+  display: none;
+}
+
+.header-nav-items {
+  padding: 0 80px;
+}
+
+.pasikatan-logo-header {
+  height: 48px;
+}
+
+.pasikatan-logo {
+  width: auto;
+  height: 56px;
+}
+
+@media screen and (max-width: 800px) {
+  .logo-container {
+    margin-top: 24px !important;
+  }
+
+  .pasikatan-logo {
+    width: 100% !important;
+  }
+
+  .pasikatan-logo-header {
+    height: 48px !important;
+  }
+
+  .square-menu {
+    margin-top: 0 !important;
+  }
+
+  .categories-container {
+    display: block !important;
+  }
+
+  .categories-wrapper {
+    padding: 24px !important;
+  }
+
+  .category-homepage {
+    margin-bottom: 32px !important;
+  }
+
+  .featured-stories-container {
+    display: block !important;
+  }
+
+  .featured-story-container {
+    margin-right: 0 !important;
+    margin-bottom: 28px !important;
+  }
+
+  .story-card-image-container {
+    height: 200px !important;
+    width: auto !important;
+  }
+
+  .footer-main-container {
+    padding: 24px !important;
+  }
+
+  .footer-wrapper {
+    display: block !important;
+  }
+
+  .footer-logo-wrapper {
+    display: block !important;
+    text-align: center !important;
+  }
+
+  .footer-info-wrapper {
+    display: block !important;
+    text-align: center !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-info-wrapper-deep {
+    margin-right: 0 !important;
+  }
+
+  .footer-contact-wrapper {
+    margin-top: 32px !important;
+  }
+
+  .footer-pasikatan-logo img {
+    margin-top: -120px !important;
+    margin-bottom: -120px !important;
+    width: 100% !important;
+  }
+
+  .footer-dti-logo {
+    margin-bottom: 32px !important;
+  }
+
+  .pasikatan-logo {
+    height: 40px !important;
+  }
+
+  .mini-menu {
+    display: flex;
+    margin-right: 24px;
+  }
+
+  .header-links {
+    display: none !important;
+  }
+
+  .header-nav-items {
+    width: 100vw;
+    padding: 0 !important;
+  }
+
+  .filter-container {
+    display: block !important;
+  }
+
+  .search-container {
+    margin-top: 32px;
+    min-width: 200px !important;
+    margin-right: 12px !important;
+  }
+
+  .search-container img {
+    margin-left: -36px !important;
+  }
+
+  .search-container input {
+    min-width: 180px !important;
+  }
+
+  .select-category-container {
+    margin-top: 32px;
+    min-width: 120px !important;
+  }
+
+  .select-category-container select {
+    min-width: 100px !important;
+  }
+
+  .alphabets-search {
+    display: none !important;
+  }
+
+  .block-sm {
+    display: block !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    text-align: left !important;
+    margin-bottom: 36px !important;
+  }
+
+  .sme-listing-sm {
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-bottom: 36px !important;
+  }
+
+  .sme-container {
+    padding: 24px !important;
+    margin: 24px !important;
+  }
+
+  .block-sm img {
+    width: 100% !important;
+    margin-bottom: 48px !important;
+  }
+
+  .sme-details {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .gallery-image {
+    text-align: center !important;
+    flex: 1 0 51% !important;
+    margin-right: 0 !important;
+  }
+
+  .preview-container {
+    margin: 0 !important;
+    margin-top: 20vh !important;
+    height: 100% !important;
+    width: auto !important;
+  }
+
+  .preview-image {
+    height: auto !important;
+  }
+
+  .story-card-sm {
+    display: block !important;
+  }
+
+  .story-card-sm .story-content-image-container {
+    margin-bottom: 24px;
+  }
+
+  .blog-container {
+    margin: 0 !important;
+  }
 }

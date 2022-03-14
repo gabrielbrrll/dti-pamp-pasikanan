@@ -49,6 +49,9 @@ const Section = styled('div', {
       'p-48': {
         padding: '48px',
       },
+      'p-24': {
+        padding: '24px',
+      },
     },
     textAlign: {
       left: {

@@ -1,17 +1,23 @@
 import Link from 'next/link'
-import { Text } from 'components'
 
 const Footer = () => (
   <div
+    className="footer-main-container"
     style={{
       background: 'rgba(255, 243, 219, 0.9)',
       borderRadius: '10px 10px 0px 0px',
       padding: '60px 100px',
     }}
   >
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <div>
+    <div
+      className="footer-wrapper"
+      style={{ display: 'flex', justifyContent: 'space-between' }}
+    >
+      <div
+        className="footer-logo-wrapper"
+        style={{ display: 'flex', alignItems: 'center' }}
+      >
+        <div className="footer-pasikatan-logo">
           <div>
             <img
               width="380"
@@ -20,38 +26,57 @@ const Footer = () => (
             />
           </div>
         </div>
-        <div>
+        <div className="footer-dti-logo">
           <img alt="DTI logo" src="/images/dti-logo.png" />
         </div>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <div style={{ marginRight: '64px' }}>
+      <div
+        className="footer-info-wrapper"
+        style={{ display: 'flex', alignItems: 'center' }}
+      >
+        <div
+          className="footer-info-wrapper-deep"
+          style={{ marginRight: '64px' }}
+        >
           <Link href="/stories">
             <a>
-              <div style={{ fontSize: '22px' }}>Stories</div>
+              <div style={{ fontSize: '22px' }} className="text-hover">
+                Stories
+              </div>
             </a>
           </Link>
           <Link href="/directory">
             <a>
-              <div style={{ fontSize: '22px', marginTop: '16px' }}>
+              <div
+                style={{ fontSize: '22px', marginTop: '16px' }}
+                className="text-hover"
+              >
                 Directory
               </div>
             </a>
           </Link>
           <Link href="/about">
             <a>
-              <div style={{ fontSize: '22px', marginTop: '16px' }}>About</div>
+              <div
+                style={{ fontSize: '22px', marginTop: '16px' }}
+                className="text-hover"
+              >
+                About
+              </div>
             </a>
           </Link>
           <Link href="/resources">
             <a>
-              <div style={{ fontSize: '22px', marginTop: '16px' }}>
+              <div
+                style={{ fontSize: '22px', marginTop: '16px' }}
+                className="text-hover"
+              >
                 Resources
               </div>
             </a>
           </Link>
         </div>
-        <div>
+        <div className="footer-contact-wrapper">
           <div style={{ fontSize: '22px', fontWeight: 600 }}>Contact Us</div>
           <div style={{ fontSize: '18px', marginTop: '12px' }}>
             +63 929 333 0381
@@ -62,14 +87,14 @@ const Footer = () => (
         </div>
       </div>
     </div>
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    {/* <div style={{ display: 'flex', alignItems: 'center' }}>
       <Text size="sm">Powered by</Text>
       <img
         style={{ height: '72px' }}
         src="/images/gulis-logo.png"
         alt="gulis-digital-marketing-services"
       />
-    </div>
+    </div> */}
   </div>
 )
 export default Footer

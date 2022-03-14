@@ -39,7 +39,11 @@ const Info = () => (
                   alignment="vertical-centered"
                   style={{ marginTop: '24px' }}
                 >
-                  <Text size="xl" style={{ marginRight: '8px' }}>
+                  <Text
+                    size="xl"
+                    style={{ marginRight: '8px' }}
+                    className="text-hover"
+                  >
                     Learn more
                   </Text>
                   <img src="icons/arrow-right-black.svg" alt="arrow-right" />

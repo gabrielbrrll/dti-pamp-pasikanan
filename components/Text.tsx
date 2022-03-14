@@ -44,6 +44,12 @@ const StyledText = styled('span', {
         textRight: 'right',
       },
     },
+    format: {
+      preformatted: {
+        whiteSpace: 'pre-wrap',
+        lineHeight: '32px',
+      },
+    },
   },
   defaultVariants: {
     color: 'default',

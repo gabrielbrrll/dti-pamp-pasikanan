@@ -1,51 +1,60 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import { Container, Meta, StoryCard, Text } from 'components'
 import Link from 'next/link'
 
-const Content1 = {
-  title: 'Success story of Miss Kathrina Miranda, Owner of Wrap Eat Out',
-  description:
-    'One of the businesses that is flourishing in the town of Bacolor is Wrap Eat Out Foods, a restaurant that offers wraps and salads...',
-  url: '/images/article-2-logo.png',
+import { getStories } from 'utils/airtable'
+
+export const getStaticProps: GetStaticProps = async () => {
+  const stories = JSON.parse(JSON.stringify(await getStories()))
+
+  return {
+    props: {
+      stories,
+    },
+  }
 }
 
-const Content2 = {
-  title: 'My Tooth Goodies Cakes, Cupcakes and Pastries',
-  description:
-    'Her products include cakes and pastries with less sugar, coco macaroons while her top selling products are carrot cakes and banana cakes...',
-  url: '/images/article-3-logo.png',
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const About: NextPage = ({ stories }: any) => {
+  const strs = stories?.filter((story: any) => story.fields?.title) || []
+  const content = strs.map((s: any) => ({
+    id: s?.id,
+    title: s.fields?.title,
+    description: s.fields?.content,
+    url:
+      s.fields?.headerImage?.[0]?.thumbnails?.large.url ||
+      '/images/pasikatan-logo-black.png',
+  }))
 
-const Content3 = {
-  title: 'SAMUEL’s BAKES AND DELICACIES',
-  description:
-    'The flagship product is their Queso Pastillas Chiffon Cake. They incorporated the Filipino favorite pastillas in a delicate baked product-Chiffon...',
-  url: '/images/article-1-logo.png',
-}
-
-const About: NextPage = () => {
   return (
     <>
       <Meta />
       <Container>
+        <div style={{ marginBottom: '36px' }}>
+          <Link href="/">
+            <a>
+              <span
+                style={{ textDecoration: 'underline' }}
+                className="text-hover"
+              >
+                Back to homepage
+              </span>
+            </a>
+          </Link>
+        </div>
         <Text size="3xl">Stories</Text>
         <div style={{ margin: '36px 0' }}>
-          <Link href="/stories/wrap-eat-out">
-            <a>
-              <StoryCard content={Content1} type="content" />
-            </a>
-          </Link>
-          <Link href="/stories/goodies-cake">
-            <a>
-              <StoryCard content={Content2} type="content" />
-            </a>
-          </Link>
-          <Link href="/stories/samuel-bakes">
-            <a>
-              <StoryCard content={Content3} type="content" />
-            </a>
-          </Link>
+          {content.map((c: any) => {
+            return (
+              <Link key={c.id} href={`/stories/${c.id}`}>
+                <a>
+                  <StoryCard content={c} type="content" />
+                </a>
+              </Link>
+            )
+          })}
         </div>
       </Container>
     </>
