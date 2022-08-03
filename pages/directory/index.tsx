@@ -59,7 +59,7 @@ const Directory = ({ smes: unfilteredSmes }: IDirectory) => {
 
   const [searchQuery, setSearchQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState('all')
-  const allCategories = smes.map((sme) => sme.fields.category[0])
+  const allCategories = smes.map((sme) => sme.fields?.category?.[0])
   const categories = Array.from(new Set(allCategories))
 
   const filterSmes = (smes: ISme[]) => {
@@ -312,12 +312,12 @@ const Directory = ({ smes: unfilteredSmes }: IDirectory) => {
                         <div className="block-sm" style={{ width: '75%' }}>
                           <div style={{ marginBottom: '8px' }}>
                             <Text size="2xl" style={{ fontWeight: 600 }}>
-                              {sme.fields.name}
+                              {sme.fields?.name}
                             </Text>
                           </div>
                           <div style={{ marginBottom: '8px' }}>
                             <Text size="xl" style={{ color: '#7E7E7E' }}>
-                              {sme.fields.description}
+                              {sme.fields?.description}
                             </Text>
                           </div>
                           <div
@@ -337,11 +337,11 @@ const Directory = ({ smes: unfilteredSmes }: IDirectory) => {
                         style={{ textAlign: 'right', width: '40%' }}
                       >
                         <div style={{ marginTop: '4px' }}>
-                          <Text>{sme.fields.location}</Text>
+                          <Text>{sme.fields?.location}</Text>
                         </div>
                         <div>
                           <Text style={{ color: '#7E7E7E' }}>
-                            {sme.fields.contactNumber}
+                            {sme.fields?.contactNumber}
                           </Text>
                         </div>
                       </div>
